@@ -1,12 +1,74 @@
-# React + Vite
+# Part 1: Intro To React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 1A: Intro to React
 
-Currently, two official plugins are available:
+### 1.1: Course Information Step 1
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<details><summary>Setup Course Information app</summary>
 
-## Expanding the ESLint configuration
+- `main.jsx` starter code:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+    ```js
+    import ReactDOM from 'react-dom/client'
+
+    import App from './App'
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />)
+    ```
+
+- `App.jsx` starter code:
+
+    ```js
+    const App = () => {
+        const course = 'Half Stack application development'
+        const part1 = 'Fundamentals of React'
+        const exercises1 = 10
+        const part2 = 'Using props to pass data'
+        const exercises2 = 7
+        const part3 = 'State of a component'
+        const exercises3 = 14
+
+        return (
+                <div>
+                    <h1>{course}</h1>
+                    <p>{part1} {exercises1}</p>
+                    <p>{part2} {exercises2}</p>
+                    <p>{part3} {exercises3}</p>
+                    <p>Number of exercises {exercises1 + exercises2 + exercises3}</p>
+                </div>
+        )
+    }
+
+    export default App
+    ```
+</details>
+
+<details><summary>Refactor "App.jsx" into 3 components</summary>
+
+- `App.jsx` should look like this:
+    ```js
+    const App = () => {
+        // const-definitions
+
+        return (
+            <div>
+                <Header course={course} />
+                <Content ... />
+                <Total ... />
+            </div>
+        )
+    }
+    ```
+</details>
+
+### 1.2: Course Information Step 2
+
+<details><summary>Refactor "Content" component into "Part" components</summary>
+
+- Each `Part` component should display the name and number of exercises of one part
+- `Content` component will consist of `Part` components
+
+</details>
+
+<details><summary></summary>
+</details>

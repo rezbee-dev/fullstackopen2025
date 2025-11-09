@@ -1,16 +1,111 @@
-# React + Vite
+# Part 2B: Forms
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 2.6: Phonebook Step 1
 
-Currently, two official plugins are available:
+<details><summary>Setup `phonebook` app</summary>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+  - Starter code:
+    ```js
+    import { useState } from 'react'
 
-## React Compiler
+    const App = () => {
+    const [persons, setPersons] = useState([{ name: 'Arto Hellas' }]) 
+    const [newName, setNewName] = useState('')
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+    return (
+            <div>
+                <h2>Phonebook</h2>
+                <form>
+                    <div>
+                        name: <input />
+                    </div>
+                    <div>
+                        <button type="submit">add</button>
+                    </div>
+                </form>
+                <h2>Numbers</h2>
+                ...
+            </div>
+        )
+    }
 
-## Expanding the ESLint configuration
+    export default App
+    ```
+</details>
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+<details><summary>Implement adding new names & displaying all names</summary>
+
+  - See example:
+  ![img](https://fullstackopen.com/static/501199c4a6d7a5702a7bdf31998d5a1d/5a190/10e.png)
+</details>
+
+## 2.7: Phonebook Step 2
+
+<details><summary>Modify phonebook to show error message if user adds name that already exists</summary>
+
+- Ex:
+    ![img](https://fullstackopen.com/static/d5be58590c1460090cb1c87adf201886/5a190/11e.png)
+</details>
+
+## 2.8: Phonebook Step 3
+
+<details><summary>Modify phonebook to allow users to add phone numbers along with names</summary>
+
+- Ex:
+  ![img](https://fullstackopen.com/static/3068a34af61692773a06d60ee93638a9/5a190/12e.png)
+</details>
+
+## 2.9: Phonebook Step 4
+<details><summary>Add search field to filter displayed phone numbers by name</summary>
+
+- Dummy data
+
+    ```js
+    const App = () => {
+    const [persons, setPersons] = useState([
+        { name: 'Arto Hellas', number: '040-123456', id: 1 },
+        { name: 'Ada Lovelace', number: '39-44-5323523', id: 2 },
+        { name: 'Dan Abramov', number: '12-43-234345', id: 3 },
+        { name: 'Mary Poppendieck', number: '39-23-6423122', id: 4 }
+    ])
+
+    // ...
+    }
+    ```
+
+- Ex:
+
+    ![img](https://fullstackopen.com/static/4b5897029d4c9e2eb61631ca4c1a4f24/5a190/13e.png)
+
+</details>
+
+## 2.10: Phonebook Step 5
+
+<details><summary>Refactor your code to extract the parts into separate components (Atleast 3)</summary>
+
+- Example code:
+
+    ```js
+    const App = () => {
+    // ...
+
+    return (
+        <div>
+        <h2>Phonebook</h2>
+
+        <Filter ... />
+
+        <h3>Add a new</h3>
+
+        <PersonForm 
+            ...
+        />
+
+        <h3>Numbers</h3>
+
+        <Persons ... />
+        </div>
+    )
+    }
+    ```
+</details>
