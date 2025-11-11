@@ -16,7 +16,7 @@ Update object by copying & merging new and existing fields (immutable)
     ```
 
 Updating array, mutation vs non-mutation
-    ![img](misc\array-immutable.png)
+    ![img](misc/array-immutable.png)
 
 
 ```js

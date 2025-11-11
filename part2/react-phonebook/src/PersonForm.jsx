@@ -1,19 +1,19 @@
 const PersonForm = ({newName, setNewName, newNumber, setNewNumber, persons, setPersons}) => {
     function onSubmit(event){
-    event.preventDefault()
+      event.preventDefault()
 
-    if(persons.find(p => p.name === newName)){
-      alert(`${newName} is already present in the phonebook!`)
-      return
+      if(persons.find(p => p.name.toLowerCase() === newName.toLowerCase())){
+        alert(`${newName} is already present in the phonebook!`)
+        return
+      }
+
+      const newPerson = {name: newName, number: newNumber}
+      setPersons(persons.concat(newPerson))
+      setNewName("")
+      setNewNumber("")
+
+      console.log("debug: Form submitted!")
     }
-
-    const newPerson = {name: newName, number: newNumber}
-    setPersons(persons.concat(newPerson))
-    setNewName("")
-    setNewNumber("")
-
-    console.log("debug: Form submitted!")
-  }
 
     return (
         <form onSubmit={onSubmit}>
