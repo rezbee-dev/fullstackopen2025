@@ -3,13 +3,8 @@
     import PersonForm from "./PersonForm.svelte";
     import Persons from "./Persons.svelte";
 
-    let persons = $state([
-        { name: 'Arto Hellas', number: '040-123456', id: 1 },
-        { name: 'Ada Lovelace', number: '39-44-5323523', id: 2 },
-        { name: 'Dan Abramov', number: '12-43-234345', id: 3 },
-        { name: 'Mary Poppendieck', number: '39-23-6423122', id: 4 }
-    ])
-
+    let { data, } = $props() // returns object from load() in +page.js
+    let persons = $state(data.persons)
     let search = $state("")
 
     let filteredPersons = $derived.by(() => {
