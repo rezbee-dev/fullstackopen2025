@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 import './App.css'
-import Filter from './Filter'
-import PersonForm from './PersonForm'
-import Persons from './Persons'
+import Filter from './components/Filter'
+import PersonForm from './components/PersonForm'
+import Persons from './components/Persons'
+import PersonService from './services/personService'
 
 function App() {
   const [persons, setPersons] = useState([])
@@ -15,7 +15,7 @@ function App() {
   // Not using .thenables as shown in Part 2C
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("http://localhost:3001/persons")
+      const response = await PersonService.getAll()
       setPersons(response.data)
     }
     

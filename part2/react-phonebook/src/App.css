@@ -48,3 +48,17 @@ form {
   flex-direction: column;
   gap: 12px;
 }
+
+.person {
+  display:flex;
+  justify-content:space-between;
+  align-items: center;
+  gap: 1em;
+  margin: 1em 0;
+}
+
+.person button {
+  padding: 0.6em 1.2em;
+  color: white;
+  background-color: black;
+}
