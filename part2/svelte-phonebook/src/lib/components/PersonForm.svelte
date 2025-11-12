@@ -1,7 +1,7 @@
 <script>
     import PersonService from "$lib/personService";
 
-    let {persons} = $props()
+    let {persons, notification} = $props()
 
     async function onsubmit(e) {
         e.preventDefault()
@@ -15,15 +15,26 @@
                 return
             else {
                 await PersonService.update(matchedPerson.id, {...matchedPerson, number: newNumber})
-                window.location.reload()
+                notification.message = "Entry successfully updated"
+                notification.error = false
+                
+                // unable to find how to reload data w/o reloading page, so am just manually update persons rune instead
+                const updatedPersonIndex = persons.findIndex(p => p.id === matchedPerson.id)
+                persons[updatedPersonIndex] = {...matchedPerson, number: newNumber}
+
+                e.target.elements.name.value = ""
+                e.target.elements.number.value = ""
                 return
             }
         }
 
         const newPerson = {name: newName, number: newNumber}
-        await PersonService.create(newPerson)
+        const response = await PersonService.create(newPerson)
+        const data = await response.json()
 
-        window.location.reload()
+        notification.message = "Entry successfully added!"
+        notification.error = false
+        persons.push(data)
 
         e.target.elements.name.value = ""
         e.target.elements.number.value = ""

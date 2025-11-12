@@ -1,7 +1,7 @@
 <script>
     import Person from "./Person.svelte";
 
-    let { persons } = $props()
+    let { persons, notification } = $props()
 </script>
 
 <div>
@@ -9,7 +9,7 @@
         <p>No results found.</p>
     {:else}
         {#each persons as person, index (index)}
-            <Person {person} />
+            <Person {persons} {person} bind:notification={notification} />
         {/each}
     {/if}
 </div>
