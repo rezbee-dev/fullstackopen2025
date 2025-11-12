@@ -60,19 +60,27 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 main {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items:center;
-        min-height: 100vh;
-        gap: 1rem;
-    }
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    min-height: 100vh;
+    gap: 1rem;
+}
 
-    section {
-        width: 80%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
-    }
+section {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: #646cff;
+}

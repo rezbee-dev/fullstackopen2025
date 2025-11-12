@@ -1,17 +1,29 @@
 <script>
+    import PersonService from "$lib/personService";
+
     let {persons} = $props()
 
-    function onsubmit(e) {
+    async function onsubmit(e) {
         e.preventDefault()
         let newName = e.target.elements.name.value
         let newNumber = e.target.elements.number.value
 
-        if(persons.find(p => p.name.toLowerCase() == newName.toLowerCase())){
-            alert(`${newName} already present in phonebook!`)
-            return
+        const matchedPerson = persons.find(p => p.name.toLowerCase() == newName.toLowerCase())
+
+        if(matchedPerson){
+            if(!window.confirm(`${newName} is already present in the phonebook. \nUpdate phone number?`))
+                return
+            else {
+                await PersonService.update(matchedPerson.id, {...matchedPerson, number: newNumber})
+                window.location.reload()
+                return
+            }
         }
 
-        persons.push({name: newName, number: newNumber})
+        const newPerson = {name: newName, number: newNumber}
+        await PersonService.create(newPerson)
+
+        window.location.reload()
 
         e.target.elements.name.value = ""
         e.target.elements.number.value = ""
