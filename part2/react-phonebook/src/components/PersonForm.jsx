@@ -1,6 +1,6 @@
 import PersonService from '../services/personService'
 
-const PersonForm = ({newName, setNewName, newNumber, setNewNumber, persons, setPersons}) => {
+const PersonForm = ({newName, setNewName, newNumber, setNewNumber, persons, setPersons, setMessage, setError}) => {
     async function onSubmit(event){
       event.preventDefault()
 
@@ -11,7 +11,8 @@ const PersonForm = ({newName, setNewName, newNumber, setNewNumber, persons, setP
           return
         else {
           await PersonService.update(matchedPerson.id, {...matchedPerson, number: newNumber})
-          window.location.reload()
+          setMessage("Entry successfully updated!")
+          setError(false)
           return
         }
       }
@@ -23,6 +24,8 @@ const PersonForm = ({newName, setNewName, newNumber, setNewNumber, persons, setP
       setPersons(persons.concat(response.data))
       setNewName("")
       setNewNumber("")
+      setMessage("Entry successfully added!")
+      setError(false)
 
       console.log("debug: Form submitted!")
     }

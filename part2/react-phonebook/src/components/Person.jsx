@@ -1,11 +1,19 @@
 import PersonService from "../services/personService"
 
-const Person = ({person}) => {
+const Person = ({person, setMessage, setError }) => {
 
     async function onClick(){
         if(window.confirm(`Delete "${person.name}"?`)) {
-            await PersonService.remove(person.id)
-            window.location.reload() // to allow re-fetching data from backend
+            try {
+                await PersonService.remove(person.id)
+                // window.location.reload() // to allow re-fetching data from backend
+                setMessage("Entry successfully deleted!")
+                setError(false)
+            } catch(error){
+                console.error(`Error: ${error}`)
+                setMessage(`"${person.name}" was already removed`)
+                setError(true)
+            }
         }
             
     }
