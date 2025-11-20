@@ -76,6 +76,16 @@
 
 ## 3B: Deploying
 
+### Phonebook
+
+**Step 9: Replace json-server with Express backend in phonebook app**
+- Build express app to serve phonebook data
+- Modify react app to request data from the express app
+
+**Step 10&11: Deploy application**
+- Deploy the app so that the backend serves minified, production build of the frontend
+- Ensure frontend still works locally, in development mode
+
 ## 3C: MongoDB
 
 ## 3D: Validation & Linting

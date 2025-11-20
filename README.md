@@ -75,3 +75,32 @@ Create react app:
 
 Create svelte app: 
 - `npx sv create`
+
+## Misc notes
+
+Same Origin Policy / CORS
+- URL's origin is defined by protocol/scheme, hostname, and port
+  - Ex: 
+  ```
+    http://example.com:80/index.html
+    
+    protocol: http
+    host: example.com
+    port: 80
+  ```
+- How it works:
+  - A) Browser requests website server
+  - B) Server sends HTML file (which may contain external references)
+  - C) Browser sends request for each of the external references (URLs)
+  - D) If the URL has same origin as original server, then browser processes the response w/o any issues
+  - E) If URL does not have same origin, then browser will check the `Access-Control-Allow-Origin` response header
+    - If it contains `*` on the URL of the source HTML, browser will process the response
+    - If it does not contain `*`, browser will refuse to process, and throw CORS error
+- This means that javascript code running in browser can only communicate with a server in the same origin, unless that server specifies in the header that it will accept that origin's request
+  - so if your backend is running on port 3001 and your frontend code was served on port 3000, the frontend code won't be able to make requests to the backend due to different origins, caused by backend not allowing the access
+- Helps prevent security vulnerabilities like session hijacking
+- To allow script in HTML file served by server to access external resources, the external server must send headers to tell browser which origins they will permit for access
+
+- How to handle CORS issue
+  - You can install `cors` and set it up as middleware on the backend
+  - Or, you can setup proxy options in Vite and set "changeOrigin" to true so the external requests are changed to match the origin of the backend server
