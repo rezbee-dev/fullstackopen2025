@@ -15,7 +15,6 @@ const Person = ({person, setMessage, setError }) => {
                 setError(true)
             }
         }
-            
     }
 
     return (

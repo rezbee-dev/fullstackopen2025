@@ -1,31 +1,12 @@
 import express from 'express'
 import morgan from 'morgan'
+// src: https://www.stefanjudis.com/snippets/how-to-import-json-files-in-es-modules-node-js/
+import db from "../db.json" with {type: "json"}
 
 const PORT = 3000
 morgan.token("reqbody", (req, res) => JSON.stringify(req.body))
 const tokens = ":method :url :status :res[content-length] - :response-time ms :reqbody"
-let data = [
-    { 
-        "id": "1",
-        "name": "Arto Hellas", 
-        "number": "040-123456"
-    },
-    { 
-        "id": "2",
-        "name": "Ada Lovelace", 
-        "number": "39-44-5323523"
-    },
-    { 
-        "id": "3",
-        "name": "Dan Abramov", 
-        "number": "12-43-234345"
-    },
-    { 
-        "id": "4",
-        "name": "Mary Poppendieck", 
-        "number": "39-23-6423122"
-    }
-]
+let data = [...db.persons]
 
 const app = express()
 app.use(express.json())
