@@ -86,6 +86,13 @@
 - Deploy the app so that the backend serves minified, production build of the frontend
 - Ensure frontend still works locally, in development mode
 
+**Misc: custom instructions**
+- Backend
+  - Load existing `db.json` to populate current (temporary) in-memory, array database, on app startup
+- Frontend
+  - Modify `vite.config.js` to include proxy config for `localhost:3000/api/persons`
+- Use some solution to automate compiling frontend for production and moving it to backendgit st
+
 ## 3C: MongoDB
 
 ## 3D: Validation & Linting
