@@ -1,9 +1,12 @@
 import express from 'express'
 import morgan from 'morgan'
+import { fileURLToPath } from 'url'
+import { dirname, join } from 'path'
 // src: https://www.stefanjudis.com/snippets/how-to-import-json-files-in-es-modules-node-js/
 import db from "../db.json" with {type: "json"}
 
 const PORT = 3000
+const DIST = join(dirname(fileURLToPath(import.meta.url)), "..", "dist")
 morgan.token("reqbody", (req, res) => JSON.stringify(req.body))
 const tokens = ":method :url :status :res[content-length] - :response-time ms :reqbody"
 let data = [...db.persons]
@@ -11,6 +14,8 @@ let data = [...db.persons]
 const app = express()
 app.use(express.json())
 app.use(morgan(tokens))
+app.use(express.static(DIST))
+console.log()
 
 app.get("/", (req, res) => {
     return res.send("Bye World!")
