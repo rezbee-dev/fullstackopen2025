@@ -80,18 +80,23 @@
 
 **Step 9: Replace json-server with Express backend in phonebook app**
 - Build express app to serve phonebook data
+  - GET `/api/persons`: returns all entries
+  - GET `/api/persons/:id`: returns entry w/ id or 404
+  - POST `/api/persons`: 201, creates entry; 400 if name or number missing; 409 if name already exists in backend
+  - DELETE `/api/persons/:id`: 204, deletes entry if found; if not found, then nothing
+  - GET `/api/persons/info`: returns "Phonebook has info for XXX people\nCurrent Date"
 - Modify react app to request data from the express app
 
 **Step 10&11: Deploy application**
 - Deploy the app so that the backend serves minified, production build of the frontend
 - Ensure frontend still works locally, in development mode
 
-**Misc: custom instructions**
+**Misc: custom**
 - Backend
   - Load existing `db.json` to populate current (temporary) in-memory, array database, on app startup
 - Frontend
   - Modify `vite.config.js` to include proxy config for `localhost:3000/api/persons`
-- Use some solution to automate compiling frontend for production and moving it to backendgit st
+- Use some solution to automate compiling frontend for production and moving it to backend
 
 ## 3C: MongoDB
 
