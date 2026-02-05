@@ -20,8 +20,13 @@ def get_person_by_name(name: str) -> Optional[PersonModel]:
         
     return None
 
+def get_persons_info():
+    phonebook_length = len(data)
+    
+    
 def add_person(person: PersonRaw):
     # Due to the nature of Pydantic, error handling will be done in API layer
+    #  so the code below is not used
     # if not person.get("name") or not person.get("number"):
     #     raise MissingRequiredFieldsError("Missing name or number")
     
@@ -33,4 +38,11 @@ def add_person(person: PersonRaw):
     data.append(PersonModel(id=new_id, name=person.name, number=person.number))
 
 def delete_person(id: int):
+    for person in data:
+        if person.id == id:
+            data.remove(person)
+            return person
+        
+    return None
+
     

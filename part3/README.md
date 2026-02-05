@@ -6,7 +6,8 @@
 
 **Step 1: Create Express app**
 
-- Implement endpoint `/api/persons` that returns hardcoded list of the following data:
+- Create Express app
+- Implement GET `/api/persons` endpoint that returns hardcoded data:
     <details><summary>phonebook data</summary>
 
     ```json
@@ -39,7 +40,7 @@
 
 **Step 2: `/info` GET route**
 
-- Create `/info` route that displays:
+- Implement `/info` route that displays:
   - a) number of phonebook entries
   - b) current time
     <details><summary>Example output</summary>
@@ -49,20 +50,18 @@
     </details>
 
 **Step 3: `/api/persons/{id}` GET route**
-
-- Create `/api/persons/{id}` route that returns phonebook entry with `{id}` id
+- Implement `/api/persons/{id}` route that returns phonebook entry with `{id}` id
 - Return `404` error status code, if phonebook entry `{id}` is not found
 
 **Step 4: `/api/persons/{id}` DELETE route**
-
-- Create `/api/persons/{id}` route that deletes phonebook entry with `{id}` with id
+- Implement `/api/persons/{id}` route that deletes phonebook entry with `{id}` with id and 204, regardless of whether it is found or not
 
 **Step 5 & 6: `/api/persons` POST route**
-- Create `/api/persons` route that adds new phonebook entry
+- Implement `/api/persons` route that adds new phonebook entry and returns 201
 - Ensure unique ID is generated for each entry
-- Implement error handling (return status code & msg) for:
-  - name or number missing
-  - name already existing in phonebook
+- Return:
+  - 400, if name or number missing
+  - 409, if name already existing in phonebook
 
 **Step 7 & 8: add `morgan` middleware**
 - Configure the middleware to display data sent in HTTP POST requests
@@ -78,14 +77,8 @@
 
 ### Phonebook
 
-**Step 9: Replace json-server with Express backend in phonebook app**
-- Build express app to serve phonebook data
-  - GET `/api/persons`: returns all entries
-  - GET `/api/persons/:id`: returns entry w/ id or 404
-  - POST `/api/persons`: 201, creates entry; 400 if name or number missing; 409 if name already exists in backend
-  - DELETE `/api/persons/:id`: 204, deletes entry if found; if not found, then nothing
-  - GET `/api/persons/info`: returns "Phonebook has info for XXX people\nCurrent Date"
-- Modify react app to request data from the express app
+**Step 9: Connect frontend to backend, and replace json-server as backend**
+- Modify react app to request data from the express app, instead of `json-server`
 
 **Step 10&11: Deploy application**
 - Deploy the app so that the backend serves minified, production build of the frontend
